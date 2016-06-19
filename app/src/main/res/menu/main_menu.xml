@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item_tape"
+            android:title="@string/menu_item_type"
+            android:icon="@drawable/ic_tape"/>
+
+        <item
+            android:id="@+id/menu_item_about_program"
+            android:title="@string/about_program"
+            android:icon="@drawable/ic_about_program"/>
+    </group>
+
+</menu>

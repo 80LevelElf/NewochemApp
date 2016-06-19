@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">NewochemApp</string>
-    <string name="tape">Лента</string>
-    <string name="current_survey">Текущий опрос</string>
+    <string name="navigation_drawer_open">Открыть навигацию</string>
+    <string name="navigation_drawer_close">Закрыть навигацию</string>
+    <string name="app_name">Newочем</string>
+    <string name="menu_item_type">Лента</string>
     <string name="about_program">О программе</string>
 </resources>

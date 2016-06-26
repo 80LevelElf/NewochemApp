@@ -8,6 +8,11 @@
             android:icon="@drawable/ic_tape"/>
 
         <item
+            android:id="@+id/menu_item_current_survey"
+            android:title="@string/menu_item_current_survey"
+            android:icon="@drawable/ic_current_survey"/>
+
+        <item
             android:id="@+id/menu_item_about_program"
             android:title="@string/about_program"
             android:icon="@drawable/ic_about_program"/>

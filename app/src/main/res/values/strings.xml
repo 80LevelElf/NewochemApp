@@ -3,6 +3,14 @@
     <string name="navigation_drawer_close">Закрыть навигацию</string>
     <string name="app_name">Newочем</string>
     <string name="menu_item_type">Лента</string>
-    <string name="about_program">О программе</string>
+    <string name="menu_item_about_program">О программе</string>
     <string name="menu_item_current_survey">Текущий опрос</string>
+    <string name="about_program">
+        Это неофициальный клиент для сообщества Newочем в ВКонтакте, позволяющий читать
+        интересные переводы статей не привязываясь к указанной социальной сети, а так же повышает
+        удобнство чтения статей(закладки, фильтрация мусора и тд).
+    </string>
+    <string name="about_program_group_link">Ссылка на сообщество</string>
+    <string name="about_program_link_description"><![CDATA[<Нажми на меня>]]></string>
+    <string name="about_program_source_link">Исходный код</string>
 </resources>

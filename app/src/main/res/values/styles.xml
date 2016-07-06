@@ -1,8 +1,10 @@
 <resources>
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--We use the same white color as primary and primary dark-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base">
@@ -25,8 +27,8 @@
         <item name="color">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="AppTheme.DrawerBackground" parent="AppTheme.Base">
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="AppTheme.BackgroundBase" parent="AppTheme.Base">
+        <item name="android:background">@color/colorPrimaryBackground</item>
     </style>
 
 </resources>

@@ -14,46 +14,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/about_program"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/about_program_group_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:text="@string/about_program_group_link"
+        android:drawableLeft="@mipmap/ic_logo"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_program_group_link"
-            android:layout_gravity="center"
-            android:paddingRight="10dp"/>
-
-        <ImageButton
-            android:id="@+id/about_program_group_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/logo_64"
-            android:contentDescription="@string/about_program_link_description"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/about_program_source_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/about_program_source_link"
-            android:layout_gravity="center"
-            android:paddingRight="10dp"/>
-
-        <ImageButton
-            android:id="@+id/about_program_source_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/github_64"
-            android:contentDescription="@string/about_program_link_description"/>
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:text="@string/about_program_source_link"
+        android:drawableLeft="@mipmap/ic_github"/>
 
 </LinearLayout>

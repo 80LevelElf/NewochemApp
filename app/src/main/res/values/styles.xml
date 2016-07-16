@@ -1,16 +1,18 @@
 <resources>
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!--We use the same white color as primary and primary dark-->
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorTextColor</item>
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base">
         <!--For toolbar-->
-        <item name="titleTextColor">@color/colorPrimaryDark</item>
+        <item name="titleTextColor">@color/colorTextColor</item>
         <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowStyle</item>
+
+        <!--System elements-->
+        <item name="android:buttonStyle">@style/AppTheme.Button</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
@@ -24,11 +26,17 @@
     <!--Navigation bar 'hamburger' button style-->
     <style name="AppTheme.DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/colorPrimaryDark</item>
+        <item name="color">@color/colorTextColor</item>
     </style>
 
     <style name="AppTheme.BackgroundBase" parent="AppTheme.Base">
         <item name="android:background">@color/colorPrimaryBackground</item>
+    </style>
+
+    <!--Override system elements-->
+    <style name="AppTheme.Button" parent="android:style/Widget.Holo.Button">
+        <item name="android:background">@drawable/button_normal</item>
+        <item name="android:textColor">@color/colorTextColor</item>
     </style>
 
 </resources>

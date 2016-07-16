@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.eightylevelelf.newochemapp.Helpers.UrlHelper;
@@ -21,7 +22,7 @@ public class AboutProgramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_program, container, false);
 
-        ImageButton groupButton = (ImageButton) view.findViewById(R.id.about_program_group_button);
+        Button groupButton = (Button) view.findViewById(R.id.about_program_group_button);
         groupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,7 +30,7 @@ public class AboutProgramFragment extends Fragment {
             }
         });
 
-        ImageButton sourceButton = (ImageButton) view.findViewById(R.id.about_program_source_button);
+        Button sourceButton = (Button) view.findViewById(R.id.about_program_source_button);
         sourceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

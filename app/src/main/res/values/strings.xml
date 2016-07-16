@@ -11,6 +11,5 @@
         удобнство чтения статей(закладки, фильтрация мусора и тд).
     </string>
     <string name="about_program_group_link">Ссылка на сообщество</string>
-    <string name="about_program_link_description"><![CDATA[<Нажми на меня>]]></string>
     <string name="about_program_source_link">Исходный код</string>
 </resources>

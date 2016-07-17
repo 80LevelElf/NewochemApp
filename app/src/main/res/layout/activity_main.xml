@@ -20,9 +20,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconTint="@color/colorAccent"
+        style="@style/AppTheme.BackgroundBase"
         app:headerLayout="@layout/navigation_bar_header"
         app:menu="@menu/main_menu"
-        style="@style/AppTheme.BackgroundBase"/>
+        app:itemBackground="@drawable/navigation_view_item"/>
 
 </android.support.v4.widget.DrawerLayout>

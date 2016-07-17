@@ -37,6 +37,7 @@
     <style name="AppTheme.Button" parent="android:style/Widget.Holo.Button">
         <item name="android:background">@drawable/button_normal</item>
         <item name="android:textColor">@color/colorTextColor</item>
+        <item name="android:paddingLeft">10dp</item>
     </style>
 
 </resources>

@@ -15,7 +15,11 @@
         <item name="android:buttonStyle">@style/AppTheme.Button</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
+    <style name="AppTheme.VersionSpecific" parent="AppTheme">
+        <!--We'll override it for version-specific behavior-->
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme.VersionSpecific">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

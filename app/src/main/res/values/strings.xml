@@ -12,4 +12,5 @@
     </string>
     <string name="about_program_group_link">Ссылка на сообщество</string>
     <string name="about_program_source_link">Исходный код</string>
+    <integer name="com_vk_sdk_AppId">5560723</integer>
 </resources>

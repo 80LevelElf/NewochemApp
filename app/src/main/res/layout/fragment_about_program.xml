@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/about_program_group_link"
-        android:drawableLeft="@mipmap/ic_logo"/>
+        android:drawableLeft="@drawable/ic_logo"/>
 
     <Button
         android:id="@+id/about_program_source_button"
@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/about_program_source_link"
-        android:drawableLeft="@mipmap/ic_github"/>
+        android:drawableLeft="@drawable/ic_github"/>
 
 </LinearLayout>

@@ -27,19 +27,6 @@ public class CurrentSurveyFragment extends Fragment {
 
     private void TestLoad()
     {
-        VKRequest request = VKApi.wall().get(VKParameters.from("domain", "newochem",
-                VKApiConst.COUNT, 10, VKApiConst.FILTERS, "owner"));
 
-        request.executeWithListener(new VKRequest.VKRequestListener() {
-            @Override
-            public void onComplete(VKResponse response) {
-                super.onComplete(response);
-            }
-
-            @Override
-            public void onError(VKError error) {
-                super.onError(error);
-            }
-        });
     }
 }

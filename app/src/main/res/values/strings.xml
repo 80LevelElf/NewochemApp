@@ -13,4 +13,15 @@
     <string name="about_program_group_link">Ссылка на сообщество</string>
     <string name="about_program_source_link">Исходный код</string>
     <integer name="com_vk_sdk_AppId">5560723</integer>
+
+    <!--Errors-->
+    <string name="error_vk_access">
+        Кажется какие-то проблемы с доступом в ВК. Может быть нет доступа в интернет?
+    </string>
+    <string name="error_cant_find_survey">
+        К сожалению, не удалось определить последний опрос.
+    </string>
+    <string name="error_json_problem">
+        Полученный JSON-результат не соответствовал ожидаемому.
+    </string>
 </resources>

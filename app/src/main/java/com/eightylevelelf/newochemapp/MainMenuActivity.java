@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.eightylevelelf.newochemapp.Fragments.AboutProgramFragment;
+import com.eightylevelelf.newochemapp.Fragments.CurrentSurveyFragment;
 import com.vk.sdk.VKSdk;
 
 public class MainMenuActivity extends AppCompatActivity
@@ -53,11 +54,12 @@ public class MainMenuActivity extends AppCompatActivity
             case R.id.menu_item_about_program:
                 fragmentToLoad = new AboutProgramFragment();
                 break;
+            case R.id.menu_item_current_survey:
+                fragmentToLoad = new CurrentSurveyFragment();
+                break;
+            default:
+                return false;
         }
-
-        //Load
-        if (fragmentToLoad == null)
-            return false;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

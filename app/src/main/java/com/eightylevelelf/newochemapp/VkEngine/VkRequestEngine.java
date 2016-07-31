@@ -9,6 +9,7 @@ import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestError;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestResult;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.ResultHolder;
 import com.eightylevelelf.newochemapp.VkEngine.Helpers.MapHelper;
+import com.eightylevelelf.newochemapp.VkEngine.Helpers.JSONWallHelper;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKApiConst;
 import com.vk.sdk.api.VKError;
@@ -50,26 +51,22 @@ public class VkRequestEngine {
                     //----------attachment[1]
                     //-------------- "type" = "poll"
                     //-------------- "poll" = ...
-                    boolean searchNext = true;
-                    JSONArray results = getResults(response);
-                    for (int resultIndex = 0; resultIndex < results.length() && searchNext; resultIndex++)
+                    JSONArray results = JSONWallHelper.getResults(response);
+                    for (int resultIndex = 0; resultIndex < results.length(); resultIndex++)
                     {
                         JSONObject item = results.getJSONObject(resultIndex);
                         JSONArray attachments = item.optJSONArray("attachments");
                         if (attachments == null)
                             break;
 
-                        for (int attIndex = 0; attIndex < attachments.length(); attIndex++)
-                        {
-                            JSONObject currentAttachment = attachments.getJSONObject(attIndex);
-                            if (currentAttachment.getString("type").equals("poll"))
-                            {
-                                //Now we pretty sure that we find needed item of result
-                                holder.setResult(new RequestResult<>(MapHelper.getSurvey(item)));
+                        JSONObject pollAttachment = JSONWallHelper.getAttachment
+                                (item.optJSONArray("attachments"), "poll");
 
-                                searchNext = false; //end search
-                                break;
-                            }
+                        if (pollAttachment != null)
+                        {
+                            //Now we pretty sure that we find needed item of result
+                            holder.setResult(new RequestResult<>(MapHelper.getSurvey(item)));
+                            break;
                         }
                     }
                 }
@@ -95,9 +92,5 @@ public class VkRequestEngine {
 
         //All works fine
         return holder.getResult();
-    }
-
-    private static JSONArray getResults(VKResponse response) throws JSONException {
-        return response.json.getJSONObject("response").getJSONArray("items");
     }
 }

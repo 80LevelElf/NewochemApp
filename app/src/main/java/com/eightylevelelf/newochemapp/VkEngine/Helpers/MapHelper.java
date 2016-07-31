@@ -7,14 +7,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Rustam on 31.07.2016.
  */
 public class MapHelper {
-    public static Survey getSurvey(JSONObject surveyJSON)
-    {
+    public static Survey getSurvey(JSONObject surveyJSON) throws JSONException {
         //We assume such structure of JSON:
         //-item
         //-----attachments
@@ -24,6 +24,18 @@ public class MapHelper {
         //----------attachment[1]
         //-------------- "type" = "poll"
         //-------------- "poll" = ...
+
+        Survey survey = new Survey();
+        survey.setDescription(surveyJSON.getString("text"));
+        survey.setDate(new Date(surveyJSON.getLong("date")));
+
+        JSONObject surveyAttachment = JSONWallHelper
+                .getAttachment(surveyJSON.getJSONArray("attachments"), "poll");
+        JSONArray answers = surveyAttachment.getJSONObject("poll").getJSONArray("answers");
+
+        survey.setAnswerList(getAnswerList(answers));
+
+        return survey;
     }
 
     private static List<Survey.Answer> getAnswerList(JSONArray answersJSON) throws JSONException {

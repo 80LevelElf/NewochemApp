@@ -1,5 +1,6 @@
 package com.eightylevelelf.newochemapp.Entities;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class Survey {
     }
 
     private String mDescription;
-    private boolean IsSurveyClosed;
+    private Date mDate;
     private List<Answer> mAnswerList;
 
     public String getDescription() {
@@ -47,19 +48,19 @@ public class Survey {
         mDescription = description;
     }
 
-    public boolean isSurveyClosed() {
-        return IsSurveyClosed;
-    }
-
-    public void setSurveyClosed(boolean surveyClosed) {
-        IsSurveyClosed = surveyClosed;
-    }
-
     public List<Answer> getAnswerList() {
         return mAnswerList;
     }
 
     public void setAnswerList(List<Answer> answerList) {
         mAnswerList = answerList;
+    }
+
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
     }
 }

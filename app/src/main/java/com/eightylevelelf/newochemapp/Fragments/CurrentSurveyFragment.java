@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.eightylevelelf.newochemapp.Entities.Survey;
+import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestResult;
+import com.eightylevelelf.newochemapp.VkEngine.VkRequestEngine;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKApiConst;
 import com.vk.sdk.api.VKError;
@@ -27,6 +30,6 @@ public class CurrentSurveyFragment extends Fragment {
 
     private void TestLoad()
     {
-
+        RequestResult<Survey> result = VkRequestEngine.getCurrentSurvey(getContext());
     }
 }

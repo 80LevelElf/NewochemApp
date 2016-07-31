@@ -64,8 +64,8 @@ public class VkRequestEngine {
                             JSONObject currentAttachment = attachments.getJSONObject(attIndex);
                             if (currentAttachment.getString("type").equals("poll"))
                             {
-                                JSONObject survey = currentAttachment.getJSONObject("poll");
-                                holder.setResult(new RequestResult<>(MapHelper.getSurvey(survey)));
+                                //Now we pretty sure that we find needed item of result
+                                holder.setResult(new RequestResult<>(MapHelper.getSurvey(item)));
 
                                 searchNext = false; //end search
                                 break;

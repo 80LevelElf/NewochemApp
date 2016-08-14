@@ -26,9 +26,7 @@ public class JSONWallHelper {
         {
             JSONObject currentAttachment = attachmentArray.getJSONObject(attIndex);
             if (currentAttachment.getString("type").equals(attachmentType))
-            {
                 return currentAttachment;
-            }
         }
 
         return null;

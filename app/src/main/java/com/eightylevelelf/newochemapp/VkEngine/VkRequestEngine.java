@@ -2,14 +2,16 @@ package com.eightylevelelf.newochemapp.VkEngine;
 
 import android.content.Context;
 
-import com.eightylevelelf.newochemapp.Entities.Survey;
+import com.eightylevelelf.newochemapp.Entities.VkEntities.Survey;
+import com.eightylevelelf.newochemapp.Entities.VkEntities.WallEntry;
 import com.eightylevelelf.newochemapp.Helpers.ResourceHelper;
 import com.eightylevelelf.newochemapp.R;
+import com.eightylevelelf.newochemapp.VkEngine.Entities.WallEntryType;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestError;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestResult;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.ResultHolder;
-import com.eightylevelelf.newochemapp.VkEngine.Helpers.MapHelper;
 import com.eightylevelelf.newochemapp.VkEngine.Helpers.JSONWallHelper;
+import com.eightylevelelf.newochemapp.VkEngine.Helpers.MapHelper;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKApiConst;
 import com.vk.sdk.api.VKError;
@@ -20,6 +22,9 @@ import com.vk.sdk.api.VKResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Rustam on 30.07.2016.
@@ -42,33 +47,15 @@ public class VkRequestEngine {
                 //Try to find first survey and return it
                 try
                 {
-                    //We assume such structure of JSON:
-                    //-item
-                    //-----attachments
-                    //----------attachment[0]
-                    //-------------- "type" = "photo"
-                    //-------------- "photo" = ...
-                    //----------attachment[1]
-                    //-------------- "type" = "poll"
-                    //-------------- "poll" = ...
-                    JSONArray results = JSONWallHelper.getResults(response);
-                    for (int resultIndex = 0; resultIndex < results.length(); resultIndex++)
-                    {
-                        JSONObject item = results.getJSONObject(resultIndex);
-                        JSONArray attachments = item.optJSONArray("attachments");
-                        if (attachments == null)
-                            break;
+                    JSONArray jsonResponse = JSONWallHelper.getResults(response);
 
-                        JSONObject pollAttachment = JSONWallHelper.getAttachment
-                                (item.optJSONArray("attachments"), "poll");
+                    Map<WallEntryType, List<WallEntry>> results = MapHelper.getWallPosts(jsonResponse);
+                    List<WallEntry> allSurveys = results.get(WallEntryType.Survey);
 
-                        if (pollAttachment != null)
-                        {
-                            //Now we pretty sure that we find needed item of result
-                            holder.setResult(new RequestResult<>(MapHelper.getSurvey(item)));
-                            break;
-                        }
-                    }
+                    if (allSurveys == null || allSurveys.size() == 0)
+                        return;
+
+                    holder.setResult(new RequestResult<>((Survey) allSurveys.get(0)));
                 }
                 catch (JSONException exception)
                 {

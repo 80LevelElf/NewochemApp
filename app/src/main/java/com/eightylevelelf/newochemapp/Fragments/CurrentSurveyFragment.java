@@ -7,15 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eightylevelelf.newochemapp.Entities.Survey;
+import com.eightylevelelf.newochemapp.Entities.VkEntities.Survey;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestResult;
 import com.eightylevelelf.newochemapp.VkEngine.VkRequestEngine;
-import com.vk.sdk.api.VKApi;
-import com.vk.sdk.api.VKApiConst;
-import com.vk.sdk.api.VKError;
-import com.vk.sdk.api.VKParameters;
-import com.vk.sdk.api.VKRequest;
-import com.vk.sdk.api.VKResponse;
 
 /**
  * Created by Parents on 30.07.2016.

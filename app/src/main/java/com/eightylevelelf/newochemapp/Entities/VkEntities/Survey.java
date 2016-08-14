@@ -1,4 +1,4 @@
-package com.eightylevelelf.newochemapp.Entities;
+package com.eightylevelelf.newochemapp.Entities.VkEntities;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Rustam on 30.07.2016.
  */
-public class Survey {
+public class Survey extends WallEntry {
 
     public static class Answer
     {
@@ -36,16 +36,13 @@ public class Survey {
         }
     }
 
-    private String mDescription;
-    private Date mDate;
     private List<Answer> mAnswerList;
 
-    public String getDescription() {
-        return mDescription;
-    }
-
-    public void setDescription(String description) {
-        mDescription = description;
+    public Survey(long vkId, String description, Date mDate)
+    {
+        setVkId(vkId);
+        setDescription(description);
+        setDate(mDate);
     }
 
     public List<Answer> getAnswerList() {
@@ -54,13 +51,5 @@ public class Survey {
 
     public void setAnswerList(List<Answer> answerList) {
         mAnswerList = answerList;
-    }
-
-    public Date getDate() {
-        return mDate;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
     }
 }

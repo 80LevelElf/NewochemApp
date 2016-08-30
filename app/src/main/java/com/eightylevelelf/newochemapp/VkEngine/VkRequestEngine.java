@@ -1,11 +1,14 @@
 package com.eightylevelelf.newochemapp.VkEngine;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.eightylevelelf.newochemapp.Entities.VkEntities.Survey;
 import com.eightylevelelf.newochemapp.Entities.VkEntities.WallEntry;
+import com.eightylevelelf.newochemapp.Settings.LogSettings;
 import com.eightylevelelf.newochemapp.Helpers.ResourceHelper;
 import com.eightylevelelf.newochemapp.R;
+import com.eightylevelelf.newochemapp.Settings.VkEngineSettings;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.WallEntryType;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestError;
 import com.eightylevelelf.newochemapp.VkEngine.Entities.RequestResult;
@@ -21,7 +24,6 @@ import com.vk.sdk.api.VKResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -33,12 +35,17 @@ public class VkRequestEngine {
 
     public static RequestResult<Survey> getCurrentSurvey(final Context context)
     {
+        return getCurrentSurvey(context, 0);
+    }
+
+    private static RequestResult<Survey> getCurrentSurvey(final Context context, final int currentIteration)
+    {
         final ResultHolder<RequestResult<Survey>> holder = new ResultHolder<>();
 
-        //Prepare request. Assume that we have at least one survey in top 10 posts
-        // (it's not a so good code, but it's always true)
         VKRequest request = VKApi.wall().
-                get(VKParameters.from("domain", "newochem", VKApiConst.COUNT, 10));
+                get(VKParameters.from(
+                        "domain", "newochem",
+                        VKApiConst.COUNT, VkEngineSettings.CountOfGettingSurveys));
 
         //Execute request
         request.executeWithListener(new VKRequest.VKRequestListener() {
@@ -53,12 +60,27 @@ public class VkRequestEngine {
                     List<WallEntry> allSurveys = results.get(WallEntryType.Survey);
 
                     if (allSurveys == null || allSurveys.size() == 0)
+                    {
+                        if (currentIteration < VkEngineSettings.MaxCountOfGetSurveyRequests)
+                        {
+                            //One more attempt
+                            holder.setResult(getCurrentSurvey(context, currentIteration + 1));
+                        }
+                        else
+                        {
+                            Log.e(LogSettings.VK_ACCESS_ERROR, "Exceeded max count of get survey attempts.");
+                            holder.setResult(new RequestResult<Survey>
+                                    (new RequestError(ResourceHelper.get(context, R.string.error_vk_access))));
+                        }
+
                         return;
+                    }
 
                     holder.setResult(new RequestResult<>((Survey) allSurveys.get(0)));
                 }
                 catch (JSONException exception)
                 {
+                    Log.e(LogSettings.VK_PARSE_ERROR, "Can't parse survey response: " + exception.getMessage());
                     holder.setResult(new RequestResult<Survey>
                             (new RequestError(ResourceHelper.get
                                     (context, R.string.error_json_problem), exception)));
@@ -67,6 +89,7 @@ public class VkRequestEngine {
 
             @Override
             public void onError(VKError error) {
+                Log.e(LogSettings.VK_ACCESS_ERROR, "Can't get access to VK: " + error.errorMessage);
                 holder.setResult(new RequestResult<Survey>
                         (new RequestError(ResourceHelper.get(context, R.string.error_vk_access), error)));
             }
@@ -74,8 +97,10 @@ public class VkRequestEngine {
 
         //Strange behavior
         if (holder.getResult() == null)
-            return new RequestResult<>
-                    (new RequestError(ResourceHelper.get(context, R.string.error_cant_find_survey)));
+        {
+            Log.e(LogSettings.VK_ACCESS_ERROR, "Strange behavior of getting access to VK.");
+            return new RequestResult<>(new RequestError(ResourceHelper.get(context, R.string.error_cant_find_survey)));
+        }
 
         //All works fine
         return holder.getResult();
